@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function NoteList({ notes = [] }) {
+export default function NoteList({ notes = [], onPickNote, onDeleteNote }) {
   return (
     <div
       style={{
