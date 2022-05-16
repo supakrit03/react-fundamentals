@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import NoteList from "./NoteList";
+
 function App() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -10,25 +12,10 @@ function App() {
   return (
     <div className="App">
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <div
-          style={{
-            display: "flex",
-            marginRight: "12px",
-            flexDirection: "column",
-          }}
-        >
-          {notes.map((note) => (
-            <div key={note.id}>
-              <div>{note.title}</div>
-              <div>{note.content}</div>
-
-              <button onClick={() => setSeletedNote(note.id)}>Edit</button>
-            </div>
-          ))}
-        </div>
+        <NoteList notes={notes} onPickNote={() => {}} onDeleteNote={() => {}} />
         <div>
           <h1>Note Editor</h1>
-          <lable htmlFor="title"> Title </lable>
+          <label htmlFor="title"> Title </label>
           <div>
             <input
               id="title"
@@ -38,7 +25,7 @@ function App() {
               }}
             />
           </div>
-          <lable htmlFor="content"> Content </lable>
+          <label htmlFor="content"> Content </label>
           <div>
             <input
               id="content"
@@ -51,6 +38,7 @@ function App() {
           <br />
           <div style={{ display: "flex", gap: "0.5rem" }}>
             <button
+              disabled={!(title && content)}
               onClick={() => {
                 setTitle("");
                 setContent("");
